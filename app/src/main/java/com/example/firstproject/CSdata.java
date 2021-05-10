@@ -3,12 +3,12 @@ package com.example.firstproject;
 import android.media.Image;
 import android.widget.ImageView;
 
-public class RecyclerView {
+public class CSdata {
 
     int CSImage;
     String name;
 
-    public RecyclerView(int CSImage, String name) {
+    public CSdata(int CSImage, String name) {
         this.CSImage = CSImage;
         this.name = name;
     }

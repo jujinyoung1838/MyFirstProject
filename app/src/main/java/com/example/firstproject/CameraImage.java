@@ -34,7 +34,7 @@ public class CameraImage extends AppCompatActivity {
         //화장품 사진
         CosmeticImage = findViewById(R.id.CosmeticImage);
 
-        //intent 이동되자마자 카메라 실행
+        //액티비티 이동되자마자 카메라 실행
         takePicture();
 
         //region검색하기 버튼 클릭시 이벤트 발생
@@ -42,13 +42,11 @@ public class CameraImage extends AppCompatActivity {
         serachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //여기서 이미지 분석 시작 하기.
+                //여기서 글자 분석 제품이름 추출하기
 
 
                 //검색 결과 인텐트로 이동
                 Intent intent = new Intent(getApplicationContext(), SearchResult.class);
-                //이전에 있던 액티비티 재호출시 그 위로는 다날림
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(intent,MainActivity.SEARCHRESULT_CODE);
             }
         });
@@ -115,9 +113,6 @@ public class CameraImage extends AppCompatActivity {
                 }
                 break;
         }
-//        else {
-//            Toast.makeText(this,"사진 없음",Toast.LENGTH_LONG).show();
-//        }
     }
     //이미지 회전
     public static Bitmap rotateImage(Bitmap source){

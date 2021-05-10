@@ -1,6 +1,5 @@
 package com.example.firstproject;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnRecyclerItemClickListener{
-    ArrayList<com.example.firstproject.RecyclerView> items = new ArrayList<com.example.firstproject.RecyclerView>();
+public class CSdataAdapter extends RecyclerView.Adapter<CSdataAdapter.ViewHolder> implements OnRecyclerItemClickListener{
+    ArrayList<CSdata> items = new ArrayList<CSdata>();
     static OnRecyclerItemClickListener listener;
 
-    public void addItem(com.example.firstproject.RecyclerView item){
+    public void addItem(CSdata item){
         items.add(item);
     }
 
-    public void setItems(ArrayList<com.example.firstproject.RecyclerView> items){
+    public void setItems(ArrayList<CSdata> items){
         this.items = items;
     }
 
-    public com.example.firstproject.RecyclerView getItem(int position){
+    public CSdata getItem(int position){
         return items.get(position);
     }
 
-    public void setItem(int position, com.example.firstproject.RecyclerView item){
+    public void setItem(int position, CSdata item){
         items.set(position, item);
     }
 
@@ -48,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //뷰홀더 재사용
-        com.example.firstproject.RecyclerView item = items.get(position);
+        CSdata item = items.get(position);
         //카드뷰에 이미지,텍스트 값
         holder.CSImage.setImageResource(item.getCSImage());
         holder.CSName.setText(item.getName());
@@ -93,7 +92,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             });
         }
 
-        public void setItem(com.example.firstproject.RecyclerView item){
+        public void setItem(CSdata item){
             CSImage.setImageResource(item.getCSImage());
             CSName.setText(item.getName());
         }

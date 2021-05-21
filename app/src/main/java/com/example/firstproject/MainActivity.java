@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     public static final int MAINCONTENT_CODE = 5;   //상세정보창 화면 이동 requestCode값
     //endregion
 
+    //region 구글 API 비전 사용
+    static final String CLOUD_VISION_API_KEY = "AIzaSyDK3FWEVo89Z7RbgbwKn_aaE5vqe9H6gvA";
+    static final String ANDROID_CERT_HEADER = "X-Android-Cert";
+    static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
+    static final int MAX_LABEL_RESULTS = 10;
+    static final int MAX_DIMENSION = 1200;
+    static final String TAG = MainActivity.class.getSimpleName();
+    //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

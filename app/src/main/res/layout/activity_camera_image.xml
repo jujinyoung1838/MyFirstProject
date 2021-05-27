@@ -56,7 +56,6 @@
         android:id="@+id/image_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정보받기"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

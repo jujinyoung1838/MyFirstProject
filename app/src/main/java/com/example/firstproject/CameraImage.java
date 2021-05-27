@@ -45,20 +45,23 @@ import java.util.List;
 
 public class CameraImage extends AppCompatActivity {
     ImageView CosmeticImage; //카메라로 찍은 화장품 사진
-    File file;
-    Uri fileUri;
-    TextView mImageDetails;
+    File file;      //카메라 파일
+    Uri fileUri;    //카메라 파일경로
+    static TextView imageDetail;     //문자인식 후 값받기
+    Bitmap rotatedBitmap;   //image 회전 후 bitmap
+    static String message;  //이미지에서 추출한 message값
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_image);
-
+        //검색하기 버튼
+        Button searchButton = findViewById(R.id.serachButton);
         //화장품 사진
         CosmeticImage = findViewById(R.id.CosmeticImage);
 
         //액티비티 이동되자마자 카메라 실행
-        takePicture();
+        TakePicture();
 
         //region검색하기 버튼 클릭시 이벤트 발생
         Button serachButton = findViewById(R.id.serachButton);
@@ -66,7 +69,8 @@ public class CameraImage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //여기서 글자 분석 제품이름 추출하기
-
+                callCloudVision(rotatedBitmap);
+                searchButton.setText("검색 중");
 
                 //검색 결과 인텐트로 이동
 //                Intent intent = new Intent(getApplicationContext(), SearchResult.class);
@@ -77,7 +81,7 @@ public class CameraImage extends AppCompatActivity {
     }
 
     //region 카메라 사용
-    public void takePicture() {
+    public void TakePicture() {
         try {
             if (file == null) {
                 file = createFile();
@@ -129,10 +133,8 @@ public class CameraImage extends AppCompatActivity {
                         Toast.makeText(this, "할당 안됨", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Bitmap rotatedBitmap;
                         rotatedBitmap = rotateImage(bitmap);
                         scaleBitmapDown(rotatedBitmap,MainActivity.MAX_DIMENSION);
-                        callCloudVision(rotatedBitmap);
                         CosmeticImage.setImageBitmap(rotatedBitmap);
                     }
                 }
@@ -195,7 +197,7 @@ public class CameraImage extends AppCompatActivity {
             base64EncodedImage.encodeContent(imageBytes);
             annotateImageRequest.setImage(base64EncodedImage);
 
-            // add the features we want
+            // 여기 수정해서 글자, 그림 등 인식
             annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                 Feature textDetection = new Feature();
                 textDetection.setType("TEXT_DETECTION");
@@ -243,7 +245,8 @@ public class CameraImage extends AppCompatActivity {
         protected void onPostExecute(String result) {
             CameraImage activity = mActivityWeakReference.get();
             if (activity != null && !activity.isFinishing()) {
-                TextView imageDetail = activity.findViewById(R.id.image_details);
+                //값을 받을 text값 설정
+                imageDetail = activity.findViewById(R.id.image_details);
                 imageDetail.setText(result);
             }
         }
@@ -283,17 +286,26 @@ public class CameraImage extends AppCompatActivity {
     }
 
     private static String convertResponseToString(BatchAnnotateImagesResponse response) {
-        StringBuilder message = new StringBuilder("I found these things:\n\n");
+        //message = new StringBuilder();
 
-        List<EntityAnnotation> labels = response.getResponses().get(0).getLabelAnnotations();
+        //getTextAnnotation으로 변경
+        List<EntityAnnotation> labels = response.getResponses().get(0).getTextAnnotations();
         if (labels != null) {
-            message.append(labels.get(0).getDescription());
-            message.append("\n");
+            message = labels.get(0).getDescription();
         } else {
-            message.append("nothing");
+            message = "nothing";
         }
 
-        return message.toString();
+        return message;
     }
+
+    //문자 두줄만 추출(제목)
+    public String SplitText()
+    {
+        String[] splitmessage = message.split("\n");
+
+        return splitmessage[0] + splitmessage[1];
+    }
+
     //endregion
 }

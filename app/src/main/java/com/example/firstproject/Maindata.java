@@ -1,11 +1,11 @@
 package com.example.firstproject;
 
-public class CSdata {
+public class Maindata {
 
     int CSImage;
     String name;
 
-    public CSdata(int CSImage, String name) {
+    public Maindata(int CSImage, String name) {
         this.CSImage = CSImage;
         this.name = name;
     }

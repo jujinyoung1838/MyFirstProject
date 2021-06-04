@@ -73,8 +73,8 @@ public class CameraImage extends AppCompatActivity {
                 searchButton.setText("검색 중");
 
                 //검색 결과 인텐트로 이동
-//                Intent intent = new Intent(getApplicationContext(), SearchResult.class);
-//                startActivityForResult(intent,MainActivity.SEARCHRESULT_CODE);
+                Intent intent = new Intent(getApplicationContext(), SearchResult.class);
+                startActivityForResult(intent,MainActivity.SEARCHRESULT_CODE);
             }
         });
         //endregion
@@ -141,6 +141,7 @@ public class CameraImage extends AppCompatActivity {
                 break;
         }
     }
+
     //이미지 회전
     public static Bitmap rotateImage(Bitmap source){
         Matrix matrix = new Matrix();
@@ -300,7 +301,7 @@ public class CameraImage extends AppCompatActivity {
     }
 
     //문자 두줄만 추출(제목)
-    public String SplitText()
+    public static String SplitText()
     {
         String[] splitmessage = message.split("\n");
 

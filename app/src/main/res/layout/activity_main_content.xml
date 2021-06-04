@@ -37,7 +37,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/Name1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="20sp"
@@ -60,6 +60,11 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:background="@drawable/border"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>

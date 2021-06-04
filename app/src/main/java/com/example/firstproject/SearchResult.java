@@ -40,6 +40,7 @@ public class SearchResult extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),MainContent.class);
                 intent.putExtra("메세지",item.getName());
                 startActivityForResult(intent,MainActivity.MAINCONTENT_CODE);
+
                 Toast.makeText(getApplicationContext(),"아이템 선택 " + item.getName(), Toast.LENGTH_LONG).show();
 
             }

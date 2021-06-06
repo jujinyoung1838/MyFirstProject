@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class MaindataAdapter extends RecyclerView.Adapter<MaindataAdapter.ViewHolder> {
     ArrayList<Maindata> items = new ArrayList<Maindata>();
-    static OnRecyclerItemClickListener listener;
 
     public void addItem(Maindata item){
         items.add(item);
@@ -49,8 +48,7 @@ public class MaindataAdapter extends RecyclerView.Adapter<MaindataAdapter.ViewHo
         //뷰홀더 재사용
         Maindata item = items.get(position);
         //카드뷰에 이미지,텍스트 값
-        holder.CSImage.setImageResource(item.getCSImage());
-        holder.CSName.setText(item.getName());
+        holder.setItem(item);
     }
 
     //data set 전체크기
@@ -59,10 +57,6 @@ public class MaindataAdapter extends RecyclerView.Adapter<MaindataAdapter.ViewHo
         return items.size();
     }
 
-    //클릭 이벤트
-    public void setOnItemClickListener(OnRecyclerItemClickListener listener){
-        this.listener = listener;
-    }
 
     static class ViewHolder extends  RecyclerView.ViewHolder{
         ImageView CSImage;
@@ -72,11 +66,11 @@ public class MaindataAdapter extends RecyclerView.Adapter<MaindataAdapter.ViewHo
         public ViewHolder(View itemView){
             super(itemView);
 
-            CSImage = itemView.findViewById(R.id.CSImage);
-            CSName = itemView.findViewById(R.id.CSName);
+            CSImage = itemView.findViewById(R.id.ContentImage);
+            CSName = itemView.findViewById(R.id.ContentName);
 
         }
-        public void setItem(CSdata item) {
+        public void setItem(Maindata item) {
             CSImage.setImageResource(item.getCSImage());
             CSName.setText(item.getName());
         }

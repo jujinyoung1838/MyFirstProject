@@ -35,6 +35,7 @@ public class SearchResult extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnRecyclerItemClickListener() {
             @Override
             public void onItemClick(CSdataAdapter.ViewHolder holder, View view, int position) {
+                Toast.makeText(getApplicationContext(), "에러 확인용"  ,Toast.LENGTH_LONG).show();
                 //클릭한 item의 position값(정보) 받아오기
                 CSdata item = adapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),MainContent.class);

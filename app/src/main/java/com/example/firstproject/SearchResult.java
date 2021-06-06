@@ -24,10 +24,10 @@ public class SearchResult extends AppCompatActivity {
         CSdataAdapter adapter = new CSdataAdapter();
 
         //RecyclerView안에 data 넣기(사진,이름)
-        adapter.addItem(new CSdata(R.drawable.ic_launcher_background,"1번"));
-        adapter.addItem(new CSdata(R.drawable.ic_launcher_foreground,"2번"));
-        adapter.addItem(new CSdata(R.drawable.ic_launcher_foreground,"3번"));
-        adapter.addItem(new CSdata(R.drawable.ic_launcher_background,"4번"));
+        adapter.addItem(new CSdata("1번"));
+        adapter.addItem(new CSdata("2번"));
+        adapter.addItem(new CSdata("3번"));
+        adapter.addItem(new CSdata("4번"));
 
         recyclerView.setAdapter(adapter);
 

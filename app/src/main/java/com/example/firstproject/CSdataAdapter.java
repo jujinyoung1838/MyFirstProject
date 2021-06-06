@@ -49,7 +49,6 @@ public class CSdataAdapter extends RecyclerView.Adapter<CSdataAdapter.ViewHolder
         //뷰홀더 재사용
         CSdata item = items.get(position);
         //카드뷰에 이미지,텍스트 값
-        holder.CSImage.setImageResource(item.getCSImage());
         holder.CSName.setText(item.getName());
     }
 
@@ -79,7 +78,6 @@ public class CSdataAdapter extends RecyclerView.Adapter<CSdataAdapter.ViewHolder
         public ViewHolder(View itemView){
             super(itemView);
 
-            CSImage = itemView.findViewById(R.id.CSImage);
             CSName = itemView.findViewById(R.id.CSName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +91,6 @@ public class CSdataAdapter extends RecyclerView.Adapter<CSdataAdapter.ViewHolder
         }
 
         public void setItem(CSdata item){
-            CSImage.setImageResource(item.getCSImage());
             CSName.setText(item.getName());
         }
     }
